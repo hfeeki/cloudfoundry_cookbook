@@ -1,0 +1,3 @@
+cookbook "test_vcaps" do
+  runtimes []
+end

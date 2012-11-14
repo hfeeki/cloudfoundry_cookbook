@@ -1,0 +1,12 @@
+---
+<%- node[:searched_data][:runtimes].each do |_, runtime| %>
+<%= runtime[:name] %>:
+    description: "<%= runtime[:version] %>"
+    version: "<%= runtime[:version] %>"
+<%- if runtime[:debug_env] %>
+    debug_modes:
+<%- runtime[:debug_env].each do |state, _| %>
+      - <%= state %>
+<%- end # debug_env.each %>
+<%- end # if debug_env %>
+<%- end # runtimes.each %>

@@ -1,0 +1,121 @@
+---
+<% if node[:searched_data][:runtimes].include? "python" %> # => ["java", "java7", "node04", "node06", "node08", "ruby18", "ruby19"]
+python2:
+  version: "2.6.5"
+  description: Python 2.6.5
+  executable: python
+  version_output: 2.[5-7]
+  version_flag: '--version'
+  environment:
+    PATH: /usr/bin:$PATH
+<% end %>
+<% if node[:searched_data][:runtimes].include? "java" %>
+java:
+  description: "Java 6"
+  version: "1.6"
+  executable: /usr/lib/jvm/java-6-openjdk/jre/bin/java
+  version_flag: '-version'
+  version_output: 1.6.0
+  debug_modes:
+    - run
+    - suspend
+  debug_env:
+    run:
+      - JAVA_OPTS="$JAVA_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=$VCAP_DEBUG_PORT,server=y,suspend=n"
+    suspend:
+      - JAVA_OPTS="$JAVA_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=$VCAP_DEBUG_PORT,server=y,suspend=y"
+  environment:
+    PATH: /usr/lib/jvm/java-6-openjdk/jre/bin:$PATH
+    JAVA_HOME: /usr/lib/jvm/java-6-openjdk/jre
+<% end %>
+<% if node[:searched_data][:runtimes].include? "node04" %>
+node:
+  version: "0.4.12"
+  version_flag: '-v'
+  version_output: 0.4.12
+  description: 'Node.js'
+  executable: /root/cloudfoundry/.deployments/dea_node/deploy/nodes/node-0.4.12/bin/node
+  npm: /root/cloudfoundry/.deployments/dea_node/deploy/nodes/npm-1.0.106/bin/npm-cli.js
+  debug_modes:
+    - run
+    - suspend
+  debug_env:
+    run:
+      - NODE_ARGS="--debug=$VCAP_DEBUG_PORT"
+    suspend:
+      - NODE_ARGS="--debug-brk=$VCAP_DEBUG_PORT"
+  environment:
+    PATH: /root/cloudfoundry/.deployments/dea_node/deploy/nodes/node-0.4.12/bin:$PATH
+<% end  %>
+<% if node[:searched_data][:runtimes].include? "node06" %>
+node06:
+  version: "0.6.8"
+  version_flag: '-v'
+  version_output: 0.6.8
+  description: 'Node.js'
+  executable: /root/cloudfoundry/.deployments/dea_node/deploy/nodes/node-0.6.8/bin/node
+  npm: /root/cloudfoundry/.deployments/dea_node/deploy/nodes/node-0.6.8/bin/npm
+  debug_modes:
+    - run
+    - suspend
+  debug_env:
+    run:
+      - NODE_ARGS="--debug=$VCAP_DEBUG_PORT"
+    suspend:
+      - NODE_ARGS="--debug-brk=$VCAP_DEBUG_PORT"
+  environment:
+    PATH: /root/cloudfoundry/.deployments/dea_node/deploy/nodes/node-0.6.8/bin:$PATH
+<% end  %>
+<% if node[:searched_data][:runtimes].include? "node08" %>
+node08:
+  version: "0.8.2"
+  version_flag: '-v'
+  version_output: 0.8.2
+  description: 'Node.js'
+  executable: /root/cloudfoundry/.deployments/dea_node/deploy/nodes/node-0.8.2/bin/node
+  npm: /root/cloudfoundry/.deployments/dea_node/deploy/nodes/node-0.8.2/bin/npm
+  debug_modes:
+    - run
+    - suspend
+  debug_env:
+    run:
+      - NODE_ARGS="--debug=$VCAP_DEBUG_PORT"
+    suspend:
+      - NODE_ARGS="--debug-brk=$VCAP_DEBUG_PORT"
+  environment:
+    PATH: /root/cloudfoundry/.deployments/dea_node/deploy/nodes/node-0.8.2/bin:$PATH
+<% end %>
+<% if node[:searched_data][:runtimes].include? "php" %>
+php:
+  description: "PHP 5"
+  version: "5.3"
+  executable: "php"
+  version_output: 5.3.[2-6]
+  version_flag: '-vn'
+  environment:
+    PATH: /usr/bin:$PATH
+<% end %>
+<% if node[:searched_data][:runtimes].include? "ruby18" %>
+ruby18:
+  version: "1.8.7" # FIXME change to 1.8.7-p334
+  description: "Ruby 1.8.7"
+  executable: "/root/cloudfoundry/.deployments/dea_ruby/deploy/rubies/ruby-1.8.7-p357/bin/ruby"
+  version_flag: "-e 'puts RUBY_VERSION'"
+  additional_checks: "-e 'puts RUBY_PATCHLEVEL >= 174'"
+  version_output: 1.8.7
+  environment:
+    PATH: /root/cloudfoundry/.deployments/dea_ruby/deploy/rubies/ruby-1.8.7-p357/bin:/root/cloudfoundry/.deployments/dea_ruby/deploy/nodes/node-0.8.2/bin:$PATH
+    BUNDLE_GEMFILE:
+<% end %>
+<% if node[:searched_data][:runtimes].include? "ruby19" %>
+ruby19:
+  version: "1.9.2p180"
+  description: "Ruby 1.9.2"
+  executable: "/root/cloudfoundry/.deployments/dea_ruby/deploy/rubies/ruby-1.9.2-p180/bin/ruby"
+  version_flag: "-e 'puts RUBY_VERSION'"
+  additional_checks: "-e 'puts RUBY_PATCHLEVEL >= 180'"
+  version_output: 1.9.2
+  environment:
+    PATH: /root/cloudfoundry/.deployments/dea_ruby/deploy/rubies/ruby-1.9.2-p180/bin:/root/cloudfoundry/.deployments/dea_ruby/deploy/nodes/node-0.8.2/bin:$PATH
+    BUNDLE_GEMFILE:
+<% end %>

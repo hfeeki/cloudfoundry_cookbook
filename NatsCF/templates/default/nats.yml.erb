@@ -1,0 +1,8 @@
+---
+deployment:
+  name: <%= node['nats_server']['deploymentname'] %>
+
+jobs:
+  install:
+    - nats_server
+    - router
