@@ -1,0 +1,1 @@
+{"name":"cloudfoundry_nats_server_ng","description":"","json_class":"Chef::Role","default_attributes":{},"override_attributes":{},"chef_type":"role","run_list":["recipe[start_nats-server]"],"env_run_lists":{"dev_version8":["recipe[nats-server]"]}}

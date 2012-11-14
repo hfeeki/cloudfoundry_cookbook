@@ -1,0 +1,1 @@
+{"name":"cloudfoundry_router_nv","description":"","json_class":"Chef::Role","default_attributes":{},"override_attributes":{},"chef_type":"role","run_list":["recipe[start_router]"],"env_run_lists":{"dev_version8":["recipe[start_router]"]}}
