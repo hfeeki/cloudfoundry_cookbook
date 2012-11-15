@@ -46,7 +46,6 @@ else
         end
        }
 
- default[:mongodb_node][:index]
  m_nodes_mdb = search(:node, "role:cloudfoundry_mongodb_service_nv AND cf_id:#{cf_id_node}")
  node.set[:mongodb_node][:index] = m_nodes_mdb.count
 
