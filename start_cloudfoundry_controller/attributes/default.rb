@@ -25,21 +25,20 @@ default[:deployment][:setup_cache] = File.join("", "var", "cache", "dev_setup")
 ########################################### COMMON  ###########################################################
 #default['cloudfoundry_common']['vcap']['ruby_version'] = "/root/cloudfoundry/.deployments/rubynode/deploy/rubies/ruby-1.9.2-p180/bin/ruby"
 default['ruby']['path'] =  File.join(node[:cloudfoundry][:home], ".deployments", node[:deployment][:name], "/deploy/rubies/ruby-1.9.2-p180/bin/ruby") #"/root/cloudfoundry/.deployments/rubynode/deploy/rubies/ruby-1.9.2-p180"
-
-
 default['cloudfoundry_common']['vcap']['bin_path'] = "/root/cloudfoundry/vcap/dev_setup/bin/vcap" 
-
 default['cloudfoundry_common']['vcap']['component_name'] = "" 
-
 default['cloudfoundry_common']['vcap']['deplyment_path'] = "/root/cloudfoundry/.deployments" 
-
 default['cloudfoundry_common']['vcap']['install_path'] = "/root/cloudfoundry/vcap"  
-
 default['cloudfoundry_common']['vcap']['logs'] = "/root/cloudfoundry/.deployments/rubynode/log"
 
 ########################################### Cloud Controller  ###########################################################
 
 default[:deployment][:welcome] = "VMware's Cloud Application Platform"
+
+default[:cloud_controller][:runtimes_number] = nil
+default[:cloud_controller][:frameworks_number] = nil
+default[:cloud_controller][:runtimes_numberi] = -1
+default[:cloud_controller][:frameworks_numberi] = -1
 
 default[:cloud_controller][:config_file] = "cloud_controller.yml"
 default[:cloud_controller][:service_api_uri]   = "http://api.#{node[:deployment][:domain]}"
